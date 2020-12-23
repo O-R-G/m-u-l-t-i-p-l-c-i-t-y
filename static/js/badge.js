@@ -44,30 +44,36 @@ function badge_init() {
 
     context.fillStyle = "#FFFFFF";
     context.lineWidth = 8;
-    context.strokeStyle = '#00F';
+    context.strokeStyle = '#000';
+
+    // load sprite sheet
+    sprite_sheet = new Image();
+    sprite_sheet.src = '/media/png/badge-sheet.png';
+    sprite_height = 500;
+    sprite_width = 500;
+    sprite_computed_width = context.canvas.width;
+    sprite_computed_height = (sprite_computed_width * 500) / 500;
+    sprite_X = (context.canvas.width - sprite_computed_width) / 2;;
+    sprite_Y = (context.canvas.height - sprite_computed_height) / 2;
+    sprite_sheet_columns = 8;
+    sprite_sheet_rows = 9;
+    frames = sprite_sheet_columns * sprite_sheet_rows;    // frames in sprite_sheet
+
     counter = 0;
-    radius = canvas.width / 2.25;
-    // frames = 60;
-    frames = 360;
-    step = 2.0 * Math.PI / frames;
-    // delay = 25; 
-    delay = 10; 
-    direction = 1;
+    delay = 100;    // adjust this as needed to match gif 
     badge_animate();
 }
 
 function badge_animate() {
     counter++;
     context.clearRect(0, 0, canvas.width, canvas.height);
-    var thisStep = (counter % frames) * step * direction;
+    // context.drawImage(sprite_sheet, sprite_width * (counter % frames), 0, 480, 253, topX, topY, 480, 253);
 
-    // change direction? in process
-    // if (thisStep == 0) { direction = !direction; }
-    // console.log(thisStep);
+    // context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
+    // context.drawImage(sprite_sheet, sprite_width * (counter % frames), 0, sprite_width, sprite_height, sprite_X, sprite_Y, sprite_computed_width, sprite_computed_height);
+    context.drawImage(sprite_sheet, sprite_width * (counter % sprite_sheet_columns), sprite_height * (counter % sprite_sheet_rows), sprite_width, sprite_height, sprite_X, sprite_Y, sprite_computed_width, sprite_computed_height);
 
-    context.beginPath();
-    context.arc(centerX, centerY, radius, 0, thisStep, false);
-    context.stroke();
+    counter++;
     t = setTimeout('badge_animate()', delay);
 }
 

@@ -3,7 +3,7 @@
     site-specific config
 */
 
-$head = 'Hello';
-$site = 'w-w-w-orld.';
+$head = 'HUM 598';
+$site = 'M-u-l-t-i-p-l-i-c-i-t-y';
 $home = $head . ", " . $site;
 ?>
