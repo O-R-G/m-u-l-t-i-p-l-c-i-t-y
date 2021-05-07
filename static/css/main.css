@@ -23,14 +23,10 @@ p {
 	margin-bottom: 1em;
 }
 
-img, video, iframe {
+img, video {
 	width: 100%;
 	padding: 1em;
   	filter: grayscale(100%);
-}
-
-iframe {
-    height: calc(100vw * .5625);
 }
 
 canvas {
